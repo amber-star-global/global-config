@@ -32,7 +32,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      default-zone: http://admin:as12345@10.10.14.169/18701/eureka/
+      default-zone: http://admin:as12345@10.14.14.169/18701/eureka/
 
 # curl -X POST host:port/shutdown
 endpoints:

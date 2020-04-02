@@ -1,0 +1,55 @@
+server:
+  port: 18701
+
+spring:
+  application:
+    name: registry-center
+  cloud:
+    config:
+      fail-fast: false
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config-server
+
+eureka:
+  instance:
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: registryCenter
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  server:
+    #关闭自我保护
+    enable-self-preservation: false
+    #清理间隔
+    eviction-interval-timer-in-ms: 3000
+    #关闭ReadOnlyMap缓存
+    use-read-only-response-cache: false
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://admin:as12345@10.10.14.169/18702/eureka/
+
+# curl -X POST host:port/shutdown
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: true
+
+# 日志配置
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.web: error
+    com.global.registry: debug
+
+# 开启密码认证
+security:
+  user:
+    name: admin
+    password: as123456
+

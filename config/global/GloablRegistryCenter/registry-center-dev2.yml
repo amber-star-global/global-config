@@ -6,11 +6,11 @@ spring:
     name: registry-center
   cloud:
     config:
-      fail-fast: false
+      fail-fast: true
       label: master
       profile: dev
       discovery:
-        enabled: true
+        enabled: false
         service-id: config-server
 
 eureka:
@@ -29,16 +29,11 @@ eureka:
     #关闭ReadOnlyMap缓存
     use-read-only-response-cache: false
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
-      default-zone: http://admin:as12345@10.14.14.169/18701/eureka/
+      default-zone: http://${security.user.name}:${security.user.password}@10.14.14.169/18701/eureka/
 
-# curl -X POST host:port/shutdown
-endpoints:
-  shutdown:
-    enabled: true
-    sensitive: true
 
 # 日志配置
 logging:

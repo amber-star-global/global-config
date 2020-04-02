@@ -29,8 +29,8 @@ eureka:
     #关闭ReadOnlyMap缓存
     use-read-only-response-cache: false
   client:
-    register-with-eureka: false
-    fetch-registry: false
+#    register-with-eureka: false
+#    fetch-registry: false
     service-url:
       default-zone: http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
 

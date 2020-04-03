@@ -31,8 +31,8 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    service-url:
-      default-zone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/
 
 
 # 日志配置

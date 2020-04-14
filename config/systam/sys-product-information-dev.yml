@@ -27,6 +27,29 @@ eureka:
     serviceUrl:
       defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/, http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
 
+feign:
+  hystrix:
+    enabled: false
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10
+      maximumSize: 30
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+        timeout:
+          enabled: false
+
+
 
 # 日志配置
 logging:
@@ -41,3 +64,16 @@ security:
     name: admin
     password: as123456
 
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+  type-aliases-package: com.amber.star.**.entitys, com.amber.star.**.params, com.amber.star.**.results
+
+
+global:
+  swagger:
+    scan:
+      package: com.amber.star.sys.product
+  mybatis:
+    mapper:
+      scan:
+        package: com.amber.star.sys.**.mappers

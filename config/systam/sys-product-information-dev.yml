@@ -16,7 +16,7 @@ eureka:
     lease-expiration-duration-in-seconds: 30
   client:
     serviceUrl:
-      defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/, http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/,http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
 
 feign:
   hystrix:

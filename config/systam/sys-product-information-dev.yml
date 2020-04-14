@@ -25,7 +25,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/, http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
 
 
 # 日志配置
@@ -33,7 +33,7 @@ logging:
   config: classpath:logback.xml
   level:
     org.springframework.web: error
-    com.global.registry: debug
+    com.amber.star.sys: debug
 
 # 开启密码认证
 security:

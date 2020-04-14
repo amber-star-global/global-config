@@ -34,12 +34,6 @@ eureka:
     serviceUrl:
       defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
 
-# curl -X POST host:port/shutdown
-#endpoints:
-#  shutdown:
-#    enabled: true
-#    sensitive: true
-
 # 日志配置
 logging:
   config: classpath:logback.xml
@@ -52,4 +46,3 @@ security:
   user:
     name: admin
     password: as123456
-

@@ -20,7 +20,7 @@ eureka:
     metadata-map:
       zone: registryCenter
     lease-renewal-interval-in-seconds: 15
-    lease-expiration-duration-in-seconds: 300
+    lease-expiration-duration-in-seconds: 30
   server:
     #关闭自我保护
     enable-self-preservation: false
@@ -34,7 +34,6 @@ eureka:
     serviceUrl:
       defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/
 
-
 # 日志配置
 logging:
   config: classpath:logback.xml
@@ -47,4 +46,3 @@ security:
   user:
     name: admin
     password: as123456
-

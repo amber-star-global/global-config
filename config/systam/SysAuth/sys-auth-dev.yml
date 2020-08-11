@@ -1,0 +1,70 @@
+server:
+  port: 19110
+
+spring:
+  application:
+    name: sys-auth
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: sys
+    lease-renewal-interval-in-seconds: 15
+    lease-expiration-duration-in-seconds: 30
+  client:
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@10.14.14.169:18701/eureka/,http://${security.user.name}:${security.user.password}@10.14.14.169:18702/eureka/
+
+feign:
+  hystrix:
+    enabled: false
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10
+      maximumSize: 30
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+        timeout:
+          enabled: false
+
+
+
+# 日志配置
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.web: error
+    com.amber.star.sys: debug
+
+# 开启密码认证
+security:
+  user:
+    name: admin
+    password: as123456
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+  type-aliases-package: com.amber.star.sys.auth.**.entitys,com.amber.star.sys.auth.**.params,com.amber.star.sys.auth.**.results
+
+
+global:
+  swagger:
+    scan:
+      package: com.amber.star.sys.auth
+  mybatis:
+    mapper:
+      scan:
+        package: com.amber.star.sys.auth.**.mappers
